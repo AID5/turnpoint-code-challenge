@@ -4,14 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cd ./src && npx nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker:db-up": "docker build -t aidenfleming_mysql_db . && docker run -d --name aidenfleming_code_challenge -p 3306:3306 aidenfleming_mysql_db"
+    "docker:db-up": "docker build -t aidenfleming_mysql_db . && docker run -d  -p 3306:3306 --name aidenfleming_code_challenge aidenfleming_mysql_db",
+    "docker:db-down": "docker stop aidenfleming_code_challenge && docker rm /aidenfleming_code_challenge && docker image rm aidenfleming_mysql_db",
+    "docker:db-start": "docker start aidenfleming_code_challenge"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   },
   "type": "module"
 }

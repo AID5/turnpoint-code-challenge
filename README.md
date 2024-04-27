@@ -1,35 +1,46 @@
 # Aiden Fleming TurnPoint Code Challenge
 
-## Run the api server
-
-### 1. clone this repo
+## Prerequisites
+1. Docker must be installed and running on your machine
+2. Port 3306 must be available
+   
+### clone this repo
 
 ```bash
-git clone ENTER URL HERE
-cd api
+git clone https://github.com/AID5/turnpoint-code-challenge
 ```
+
+## Run the api server
 
 ### 2. install dependencies
 
 ```bash
+cd api
 npm install
 ```
 
 ### 3. run the db
 
 ```bash
-docker build -t aidenfleming_mysql_db .
-docker run -d --name aidenfleming_code_challenge -p 3306:3306 aidenfleming_mysql_db
+npm run docker:db-up
 ```
+or
+```bash
+npm run docker:db-start
+```
+if the docker container is already initialised
 
-### 3. run the server on port 8080
+
+### 4. run the server on port 8080
 
 ```bash
 node index.js
 ```
 
-### 4. check server is running
+### 5. check server is running
 
 ```bash
 curl 127.0.0.1:8080
 ```
+
+## Run the react app
