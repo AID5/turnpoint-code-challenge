@@ -34,7 +34,7 @@ if the docker container is already initialised
 ### 4. run the server on port 8080
 
 ```bash
-node index.js
+npm run start
 ```
 
 ### 5. check server is running
