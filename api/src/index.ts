@@ -1,7 +1,4 @@
 import { app } from "./app";
-import dotenv from "dotenv";
-
-dotenv.config();
 const PORT = 3000;
 
 // The code below starts the API with these parameters:
