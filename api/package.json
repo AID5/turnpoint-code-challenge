@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "start": "npx nodemon src/index.ts",
+    "start:dev": "npx nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker:db-up": "docker build -t aidenfleming_mysql_db . && docker run -d  -p 3306:3306 --name aidenfleming_code_challenge aidenfleming_mysql_db",
     "docker:db-down": "docker stop aidenfleming_code_challenge && docker rm /aidenfleming_code_challenge && docker image rm aidenfleming_mysql_db",
@@ -22,6 +22,9 @@
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "mysql2": "^3.9.7",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "sequelize-typescript": "^2.1.6",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

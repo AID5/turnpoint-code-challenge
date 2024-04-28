@@ -56,6 +56,29 @@ async function updateClient(
   return result;
 }
 
+async function createOrUpdateClient(
+  id: string,
+  firstName: string,
+  lastName: string,
+  DOB: string,
+  primaryLanguage: string,
+  secondaryLanguage: string,
+  primaryFundingSourceId: string
+) {
+  const sqlQuery = `UPDATE Clients SET FirstName = ?, LastName = ?, DOB = ?, PrimaryLanguage = ?, SecondaryLanguage = ?, PrimaryFundingSourceId = ?
+                      WHERE Id = ?`;
+  const [result] = await pool.query(sqlQuery, [
+    firstName,
+    lastName,
+    DOB,
+    primaryLanguage,
+    secondaryLanguage,
+    primaryFundingSourceId,
+    id,
+  ]);
+  return result;
+}
+
 export default {
   getClients,
   getClient,

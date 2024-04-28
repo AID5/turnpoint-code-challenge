@@ -1,9 +1,21 @@
+import express, { Application, Request, Response } from "express";
 import { app } from "./app";
-const PORT = 3000;
+import dbInit from "./db/init";
 
-// The code below starts the API with these parameters:
-// 1 - The PORT where your API will be available
-// 2 - The callback function (function to call) when your API is ready
-app.listen(PORT, () =>
-  console.log(`The API is running on: http://localhost:${PORT}.`)
-);
+const port = 3000;
+dbInit();
+
+// Body parsing Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.get("/", async (req: Request, res: Response): Promise<Response> => {
+  return res.status(200).send({ message: `Welcome to the turnpoint API!` });
+});
+
+try {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+} catch (error) {
+  console.log(`Error occurred: ${error}`);
+}
