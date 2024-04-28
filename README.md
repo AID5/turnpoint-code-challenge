@@ -57,6 +57,12 @@ cd app
 npm install
 ```
 
-### 2. Open the app
+### 2. Run the app
+
+```bash
+npm run dev
+```
+
+### 3. Open the app
 
 <http://localhost:3000/>
