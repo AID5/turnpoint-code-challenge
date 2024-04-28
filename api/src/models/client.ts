@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelizeConnection from "../db/config";
-import FundingSource from "./fundingSource";
 
 interface ClientAttributes {
   id: number;
@@ -27,7 +26,6 @@ class Client
   public primaryLanguage!: string;
   public secondaryLanguage!: string;
   public primaryFundingSourceId!: number;
-  public primaryFundingSource!: FundingSource;
 }
 
 Client.init(

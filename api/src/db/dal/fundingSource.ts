@@ -28,12 +28,12 @@ export const update = async (
   id: number,
   payload: Partial<FundingSourceInput>
 ): Promise<FundingSourceOutput> => {
-  const data = await FundingSource.findByPk(id);
-  if (!data) {
+  const response = await FundingSource.findByPk(id);
+  if (!response) {
     throw new Error("not found");
   }
-  const updatedData = await (data as FundingSource).update(payload);
-  return updatedData;
+  const data = await (response as FundingSource).update(payload);
+  return data;
 };
 
 export const deleteById = async (id: number): Promise<boolean> => {

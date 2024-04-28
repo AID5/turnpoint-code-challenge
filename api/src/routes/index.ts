@@ -1,10 +1,10 @@
 import express from "express";
-import clientsRouter from "./clients";
+import clientsRouter from "./client";
 import fundingSourceRouter from "./fundingSource";
 
 const router = express.Router();
 
-router.use("/clients", clientsRouter);
+router.use("/client", clientsRouter);
 router.use("/fundingSource", fundingSourceRouter);
 
 export default router;
