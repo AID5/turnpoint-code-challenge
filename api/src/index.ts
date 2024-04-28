@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express";
 import { app } from "./app";
 import dbInit from "./db/init";
 
-const port = 3000;
+const port = 8080;
 dbInit();
 
 // Body parsing Middleware
