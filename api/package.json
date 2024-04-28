@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker:db-up": "docker build -t aidenfleming_mysql_db . && docker run -d  -p 3306:3306 --name aidenfleming_code_challenge aidenfleming_mysql_db",
+    "docker:db-up": "docker build -t aidenfleming_mysql_db . && docker run -p 3306:3306 --name aidenfleming_code_challenge aidenfleming_mysql_db",
     "docker:db-down": "docker stop aidenfleming_code_challenge && docker rm /aidenfleming_code_challenge && docker image rm aidenfleming_mysql_db",
     "docker:db-start": "docker start aidenfleming_code_challenge"
   },
@@ -28,6 +28,7 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
     "nodemon": "^3.1.0",
