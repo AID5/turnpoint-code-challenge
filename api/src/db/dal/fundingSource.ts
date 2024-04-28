@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import FundingSource from "../../models/fundingSource";
 import {
   FundingSourceInput,
