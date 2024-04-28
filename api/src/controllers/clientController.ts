@@ -27,7 +27,7 @@ export const getAll = async (): Promise<Client[]> => {
   return (await service.getAll()).map(toObject);
 };
 
-export const toObject = (Client: ClientOutput): Client => {
+const toObject = (Client: ClientOutput): Client => {
   return {
     id: Client.id,
     firstName: Client.firstName,

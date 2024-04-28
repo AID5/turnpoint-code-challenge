@@ -32,7 +32,7 @@ export const getAll = async (): Promise<FundingSource[]> => {
   return (await service.getAll()).map(toObject);
 };
 
-export const toObject = (FundingSource: FundingSourceOutput): FundingSource => {
+const toObject = (FundingSource: FundingSourceOutput): FundingSource => {
   return {
     id: FundingSource.id,
     name: FundingSource.name,

@@ -11,8 +11,7 @@ interface ClientAttributes {
   primaryFundingSourceId: number;
 }
 
-export interface ClientInput
-  extends Optional<ClientAttributes, "id" | "secondaryLanguage"> {}
+export interface ClientInput extends Optional<ClientAttributes, "id"> {}
 export interface ClientOutput extends Required<ClientAttributes> {}
 
 class Client
