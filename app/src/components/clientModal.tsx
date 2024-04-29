@@ -1,6 +1,6 @@
 import React from "react";
 import ClientService from "@/services/client.service";
-import fundingSourceService from "@/services/fundingSource.service";
+import FundingSourceService from "@/services/fundingSource.service";
 import IClientData from "@/types/client.type";
 
 interface Props {
@@ -16,17 +16,13 @@ class ClientModal extends React.Component<Props, State> {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
-    console.log(this.props.showModal);
-  }
+  componentDidMount() {}
   closeModal() {
     this.props.closeModal();
   }
   editClient(client: IClientData) {
     ClientService.update(client, client.id!)
-      .then((response: any) => {
-        console.log(response);
-      })
+      .then((response: any) => {})
       .catch((e: Error) => {
         console.log(e);
       });

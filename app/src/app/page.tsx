@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
 import ClientService from "@/services/client.service";
-import fundingSourceService from "@/services/fundingSource.service";
+import FundingSourceService from "@/services/fundingSource.service";
 import IClientData from "@/types/client.type";
+import IFundingSourceData from "@/types/fundingSource.type";
 import ClientModal from "@/components/clientModal";
 
 interface Props {}
 
 interface State {
   clients: Array<IClientData>;
+  fundingSources: Array<IFundingSourceData>;
   showModal: boolean;
   selectedClient: IClientData;
 }
@@ -18,6 +20,7 @@ class Table extends React.Component<Props, State> {
     super(props);
     this.state = {
       clients: [],
+      fundingSources: [],
       showModal: false,
       selectedClient: {
         id: null,
@@ -47,6 +50,18 @@ class Table extends React.Component<Props, State> {
       });
   }
 
+  retrieveFundingSources() {
+    FundingSourceService.getAll()
+      .then((response: any) => {
+        this.setState({
+          clients: response.data,
+        });
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  }
+
   onDeleteClient(id: number) {
     ClientService.delete(id)
       .then((response: any) => {
@@ -62,17 +77,6 @@ class Table extends React.Component<Props, State> {
       showModal: true,
       selectedClient: client,
     });
-  }
-
-  getFundingSourceNameById(id: number) {
-    fundingSourceService
-      .getNameById(id)
-      .then((response: any) => {
-        return response.data;
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
   }
 
   closeModal() {
