@@ -119,6 +119,7 @@ class Table extends React.Component<Props, State> {
           showModal={this.state.showModal}
           client={this.state.selectedClient}
           closeModal={this.closeModal}
+          refreshClientList={this.refreshClientList}
         />
 
         <main className="flex min-h-screen min-w-full bg-gray-950 items-center justify-center">
