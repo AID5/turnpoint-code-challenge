@@ -35,6 +35,9 @@ class ClientModal extends React.Component<Props, State> {
   closeModal() {
     this.props.closeModal();
   }
+  refreshClientList() {
+    this.props.refreshClientList();
+  }
   submit(client: IClientData) {
     if (client.id) {
       this.editClient(client);
@@ -45,7 +48,8 @@ class ClientModal extends React.Component<Props, State> {
   editClient(client: IClientData) {
     ClientService.update(client, client.id!)
       .then((response: any) => {
-        this.props.refreshClientList();
+        this.refreshClientList();
+        this.closeModal();
       })
       .catch((e: Error) => {
         console.log(e);
@@ -54,7 +58,8 @@ class ClientModal extends React.Component<Props, State> {
   createClient(client: IClientData) {
     ClientService.create(client)
       .then((response: any) => {
-        this.props.refreshClientList();
+        this.refreshClientList();
+        this.closeModal();
       })
       .catch((e: Error) => {
         console.log(e);
