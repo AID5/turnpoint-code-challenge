@@ -48,9 +48,7 @@ npm run docker:db-down
 
 open a new terminal window to the root directory of the repo and run
 
-```bash
-cd api
-npm run dev
+ dev
 ```
 
 ### 4. (Optional) Check the api is running by opening the address in your browser and checking for the message

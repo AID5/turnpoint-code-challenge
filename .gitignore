@@ -39,3 +39,4 @@
 *next-env.d.ts
 api/node_modules/.package-lock.json
 /api/node_modules
+app/package-lock.json

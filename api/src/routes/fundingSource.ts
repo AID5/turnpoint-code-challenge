@@ -23,6 +23,16 @@ router.get("/:id", async (req: Request, res: Response, next) => {
   }
 });
 
+router.get("/name/:id", async (req: Request, res: Response, next) => {
+  try {
+    const id = Number(req.params.id);
+    res.json(await fundingSourceController.getNameById(id));
+  } catch (err) {
+    console.error(`Error while fetching`, err);
+    next(err);
+  }
+});
+
 router.post("/", async (req: Request, res: Response, next) => {
   try {
     const payload: FundingSourceInput = req.body;
@@ -33,7 +43,7 @@ router.post("/", async (req: Request, res: Response, next) => {
   }
 });
 
-router.post("/:id", async (req: Request, res: Response, next) => {
+router.put("/:id", async (req: Request, res: Response, next) => {
   try {
     const id = Number(req.params.id);
     const payload: FundingSourceInput = req.body;

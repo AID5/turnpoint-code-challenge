@@ -22,6 +22,10 @@ export const getById = async (id: number): Promise<FundingSource> => {
   return toObject(await service.getById(id));
 };
 
+export const getNameById = async (id: number): Promise<string> => {
+  return await service.getNameById(id);
+};
+
 export const deleteById = async (id: number): Promise<Boolean> => {
   const isDeleted = await service.deleteById(id);
 

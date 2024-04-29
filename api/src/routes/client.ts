@@ -33,7 +33,7 @@ router.post("/", async (req: Request, res: Response, next) => {
   }
 });
 
-router.post("/:id", async (req: Request, res: Response, next) => {
+router.put("/:id", async (req: Request, res: Response, next) => {
   try {
     const id = Number(req.params.id);
     const payload: ClientInput = req.body;

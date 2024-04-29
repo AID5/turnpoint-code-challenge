@@ -16,6 +16,14 @@ export const getById = async (id: number): Promise<FundingSourceOutput> => {
   return data;
 };
 
+export const getNameById = async (id: number): Promise<string> => {
+  const data = await FundingSource.findByPk(id);
+  if (!data) {
+    throw new Error("not found");
+  }
+  return data.name;
+};
+
 export const create = async (
   payload: FundingSourceInput
 ): Promise<FundingSourceOutput> => {

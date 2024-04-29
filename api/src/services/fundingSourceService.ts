@@ -18,6 +18,9 @@ export const update = (
 export const getById = (id: number): Promise<FundingSourceOutput> => {
   return fundingSourceDal.getById(id);
 };
+export const getNameById = (id: number): Promise<string> => {
+  return fundingSourceDal.getNameById(id);
+};
 export const deleteById = (id: number): Promise<boolean> => {
   return fundingSourceDal.deleteById(id);
 };
