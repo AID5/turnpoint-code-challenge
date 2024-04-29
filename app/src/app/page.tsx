@@ -18,6 +18,8 @@ interface State {
 class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.closeModal = this.closeModal.bind(this);
+    this.refreshClientList = this.refreshClientList.bind(this);
     this.state = {
       clients: [],
       fundingSources: [],
@@ -51,6 +53,10 @@ class Table extends React.Component<Props, State> {
       });
   }
 
+  refreshClientList() {
+    this.retrieveClients();
+  }
+
   retrieveFundingSources() {
     FundingSourceService.getAll()
       .then((response: any) => {
@@ -66,7 +72,7 @@ class Table extends React.Component<Props, State> {
   onDeleteClient(id: number) {
     ClientService.delete(id)
       .then((response: any) => {
-        this.retrieveClients();
+        this.refreshClientList();
       })
       .catch((e: Error) => {
         console.log(e);
@@ -77,6 +83,21 @@ class Table extends React.Component<Props, State> {
     this.setState({
       showModal: true,
       selectedClient: client,
+    });
+  }
+
+  onCreateClientClicked() {
+    this.setState({
+      showModal: true,
+      selectedClient: {
+        id: null,
+        firstName: "",
+        lastName: "",
+        dob: new Date(),
+        primaryLanguage: "",
+        secondaryLanguage: "",
+        primaryFundingSourceId: 1,
+      },
     });
   }
 
@@ -181,6 +202,7 @@ class Table extends React.Component<Props, State> {
                 data-modal-toggle="default-modal"
                 className="block mx-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="button"
+                onClick={() => this.onCreateClientClicked()}
               >
                 Add new
               </button>

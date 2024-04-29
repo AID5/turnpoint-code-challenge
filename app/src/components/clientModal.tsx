@@ -7,22 +7,55 @@ interface Props {
   showModal: boolean;
   client: IClientData;
   closeModal: any;
+  refreshClientList: any;
 }
 
-interface State {}
+interface State {
+  newClient: IClientData;
+}
 
 class ClientModal extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      newClient: {
+        id: null,
+        firstName: "",
+        lastName: "",
+        dob: new Date(),
+        primaryLanguage: "",
+        secondaryLanguage: "",
+        primaryFundingSourceId: 1,
+      },
+    };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({ newClient: this.props.client });
+  }
   closeModal() {
     this.props.closeModal();
   }
+  submit(client: IClientData) {
+    if (client.id) {
+      this.editClient(client);
+    } else {
+      this.createClient(client);
+    }
+  }
   editClient(client: IClientData) {
     ClientService.update(client, client.id!)
-      .then((response: any) => {})
+      .then((response: any) => {
+        this.props.refreshClientList();
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  }
+  createClient(client: IClientData) {
+    ClientService.create(client)
+      .then((response: any) => {
+        this.props.refreshClientList();
+      })
       .catch((e: Error) => {
         console.log(e);
       });
@@ -114,7 +147,7 @@ class ClientModal extends React.Component<Props, State> {
                   data-modal-hide="default-modal"
                   type="button"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  onClick={() => this.editClient(this.props.client)}
+                  onClick={() => this.submit(this.props.client)}
                 >
                   Submit
                 </button>
