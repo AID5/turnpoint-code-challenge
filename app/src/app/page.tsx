@@ -36,6 +36,7 @@ class Table extends React.Component<Props, State> {
 
   componentDidMount() {
     this.retrieveClients();
+    this.retrieveFundingSources();
   }
 
   retrieveClients() {
@@ -54,7 +55,7 @@ class Table extends React.Component<Props, State> {
     FundingSourceService.getAll()
       .then((response: any) => {
         this.setState({
-          clients: response.data,
+          fundingSources: response.data,
         });
       })
       .catch((e: Error) => {
@@ -77,6 +78,11 @@ class Table extends React.Component<Props, State> {
       showModal: true,
       selectedClient: client,
     });
+  }
+
+  getFundingSourceNameById(id: number) {
+    const fundingSource = this.state.fundingSources.find((x) => x.id === id);
+    return fundingSource?.name;
   }
 
   closeModal() {
@@ -139,7 +145,9 @@ class Table extends React.Component<Props, State> {
                           {client.secondaryLanguage}
                         </td>
                         <td className="px-6 py-4">
-                          {client.primaryFundingSourceId}
+                          {this.getFundingSourceNameById(
+                            client.primaryFundingSourceId
+                          )}
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex row justify-center">
